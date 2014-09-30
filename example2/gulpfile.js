@@ -1,5 +1,6 @@
 var gulp        = require('gulp'),
     browserify  = require('browserify'),
+    watchify    = require('watchify'),
     source      = require('vinyl-source-stream'),
     streamify   = require('gulp-streamify'),
     connect     = require('gulp-connect');
@@ -15,6 +16,7 @@ gulp.task('browserify', function(cb) {
         .pipe(gulp.dest('./dist/js'))
         .pipe(connect.reload());
 });
+
 
 // css tasks
 gulp.task('css', function () {
@@ -38,16 +40,36 @@ gulp.task('webserver', function(){
     });
 });
 
+// Use watchify for browserify bundles
+gulp.task('watchify', function() {
+    var bundler = watchify(browserify('./src/js/app.js'), watchify.args);
+        bundler.on('update', function(id){
+            console.log('file' + id[0] + ' was updated, building bundle...');
+            return rebundle();
+        });
+
+        bundler.on('log', function (msg) {
+            console.log(msg);
+        })
+
+    function rebundle(){
+        return bundler.bundle()
+             .on('error', function(err){
+                console.log(err.toString());
+                this.emit('end');
+            })
+            .pipe(source('app.bundle.js'))
+            .pipe(gulp.dest('./dist/js/'))
+            .pipe(connect.reload());
+    }
+    return rebundle();
+});
+
 // watch for changes
-gulp.task('watcher', ['browserify', 'css', 'markup'], function(){
+gulp.task('watcher', ['browserify', 'css', 'markup', 'watchify'], function(){
     var markupWatcher = gulp.watch(['./src/*.html'], ['markup']);
         markupWatcher.on('change', function(event){
             console.log('file' + event.path + ' was ' + event.type + ', building markup...');
-        });
-
-    var jsWatcher = gulp.watch(['./src/**/*.js'], ['browserify']);
-        jsWatcher.on('change', function(event){
-            console.log('file' + event.path + ' was ' + event.type + ', building js...');
         });
 
     var lessWatcher = gulp.watch(['./src/**/*.css'], ['css']);

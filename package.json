@@ -21,7 +21,8 @@
     "gulp": "^3.8.8",
     "gulp-connect": "^2.0.6",
     "gulp-rename": "^1.2.0",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^1.0.6"
   },
   "dependencies": {
     "date-utils": "^1.2.16"
