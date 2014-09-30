@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Some random website</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400' rel='stylesheet' type='text/css'>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <canvas></canvas>
+    <header>
+        <h1>Sample gulp site with browserify</h1>
+        <nav>
+            <ol>
+                <li><a href="#">Some Link</a></li>
+                <li><a href="#">Stuff</a></li>
+                <li><a href="#">More stuff</a></li>
+            </ol>
+        </nav>
+    </header>
+    <main role="main">
+                <h3>Some random heading</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore iusto sit voluptatum aperiam beatae non molestias enim, veniam asperiores, molestiae, neque soluta porro explicabo architecto atque nobis. Ab, eius, sequi!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam perspiciatis eaque aut nemo impedit quis odio eligendi sequi magni. Delectus iusto veniam libero cumque enim minus molestias dolor aut recusandae.</p>
+                     
+<pre>
+<code>(function(){
+    'use strict';
+
+    function ready(){
+        document.removeEventListener('DOMContentLoaded', ready, false);
+        window.removeEventListener('load', ready, false);
+
+        var ribbons = new Ribbons();
+    }
+
+    document.addEventListener('DOMContentLoaded', ready, false);
+    window.addEventListener('load', ready, false);
+})();</code>
+</pre>    
+
+                <h3>Another heading</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore iusto sit voluptatum aperiam beatae non molestias enim, veniam asperiores, molestiae, neque soluta porro explicabo architecto atque nobis. Ab, eius, sequi!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam perspiciatis eaque aut nemo impedit quis odio eligendi sequi magni. Delectus iusto veniam libero cumque enim minus molestias dolor aut recusandae.</p>
+    </main>
+    <footer >
+        Footer content
+        <ol>
+            <li><a href="#">Some Link</a></li>
+            <li><a href="#">Stuff</a></li>
+            <li><a href="#">More stuff</a></li>
+        </ol>
+    </footer>
+    <script src="js/app.bundle.js"></script>
+</body>
+</html>
